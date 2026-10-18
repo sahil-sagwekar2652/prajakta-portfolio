@@ -1,0 +1,419 @@
+---
+import Parijat from './Parijat.astro';
+import Arrow from './Arrow.astro';
+---
+
+<section class="hero" id="top">
+  <div class="hero-bg" aria-hidden="true"></div>
+
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <h1 data-settle style="--d: 0s">Prajakta Patil</h1>
+      <p class="gloss" data-settle style="--d: 0.12s">
+        <span class="dev">प्राजक्ता</span> — parijat, the night-flowering jasmine
+      </p>
+      <figure class="name-plate" data-settle style="--d: 0.2s; --settle-rot: -2.5deg">
+        <img
+          src="/images/parijat.jpg"
+          alt="A fallen parijat flower on stone in morning light — white petals, saffron heart"
+          width="1600"
+          height="900"
+          decoding="async"
+        />
+        <figcaption>A fallen parijat, from one of my walks.</figcaption>
+      </figure>
+      <p class="roles" data-settle style="--d: 0.3s">
+        Athlete <span class="dot">·</span> Trekker <span class="dot">·</span> Poet
+        <span class="dot">·</span> Traveller <span class="dot">·</span> Tour guide
+        <span class="dot">·</span> Writer <span class="dot">·</span> Founder
+      </p>
+      <p class="intro" data-settle style="--d: 0.42s">
+        I walk the Sahyadris and write the yatra down — night climbs, ridge winds and the
+        flowers that fall by morning. Be kind, be you.
+      </p>
+      <div class="actions" data-settle style="--d: 0.54s">
+        <a class="primary" href="#stories">Read the latest trek <Arrow direction="down" size={15} /></a>
+        <a
+          class="secondary"
+          href="https://yatrawithprajakta.blogspot.com"
+          target="_blank"
+          rel="noopener"
+          >yatrawithprajakta.blogspot.com <Arrow size={13} /></a
+        >
+      </div>
+    </div>
+
+    <div class="collage" aria-label="Photographs of Prajakta on her travels">
+      <figure
+        class="snap s1"
+        data-settle
+        tabindex="0"
+        style="--d: 0.38s; --settle-rot: 3.5deg; --stack-x: -22%; --stack-y: 20%; --stack-rot: 1deg;"
+      >
+        <img
+          src="/images/gallery/beach.jpg"
+          alt="Prajakta at a beach shack, palm leaves overhead"
+          width="1600"
+          height="900"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>Salt in the air</figcaption>
+      </figure>
+
+      <figure
+        class="snap s2"
+        data-settle
+        tabindex="0"
+        style="--d: 0.24s; --settle-rot: -2.8deg; --stack-x: 20%; --stack-y: 16%; --stack-rot: -1.5deg;"
+      >
+        <img
+          src="/images/gallery/summit.jpg"
+          alt="Summit selfie at a busy temple top with saffron flags"
+          width="1600"
+          height="720"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>Summit, saffron flags</figcaption>
+      </figure>
+
+      <figure
+        class="snap s4"
+        data-settle
+        tabindex="0"
+        style="--d: 0.5s; --settle-rot: -3.5deg; --stack-x: 18%; --stack-y: -24%; --stack-rot: -0.5deg;"
+      >
+        <img
+          src="/images/gallery/flower-field.jpg"
+          alt="Prajakta sitting in a field of yellow wildflowers, mist behind"
+          width="1600"
+          height="1200"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>In the wildflowers</figcaption>
+      </figure>
+
+      <figure
+        class="snap s3"
+        data-settle
+        tabindex="0"
+        style="--d: 0.62s; --settle-rot: 2deg; --stack-x: -24%; --stack-y: -26%; --stack-rot: 2deg;"
+      >
+        <img
+          src="/images/gallery/himalaya.jpg"
+          alt="Prajakta in a saffron sweater against Himalayan conifers"
+          width="960"
+          height="1280"
+          loading="lazy"
+          decoding="async"
+        />
+        <figcaption>Himalayan air</figcaption>
+      </figure>
+
+      <!-- blossoms resting on the cluster -->
+      <span class="b c1"><Parijat variant="fallen" size={76} rotate={-24} dur="12s" drift /></span>
+      <span class="b c2"><Parijat variant="bloom" size={58} rotate={60} dur="14s" drift /></span>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Once the entrance de-stack animation completes, reset --d so hover interactions are immediate
+  setTimeout(() => {
+    document.querySelectorAll<HTMLElement>('.collage .snap').forEach((el) => {
+      el.style.setProperty('--d', '0s');
+    });
+  }, 1800);
+</script>
+
+<style>
+  .hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: var(--ground);
+    min-height: calc(100svh - 4.5rem);
+    display: flex;
+    align-items: center;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background-image: url('/images/airy-prajakta-flower-pattern.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+    pointer-events: none;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    height: clamp(3rem, 10vh, 7rem);
+    background: linear-gradient(to bottom, transparent, var(--ground));
+    pointer-events: none;
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding: clamp(1rem, 3vh, 2rem) var(--gutter) clamp(3.5rem, 9vh, 6rem);
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    align-items: center;
+    gap: clamp(1.5rem, 3.5vw, 3.5rem);
+    width: 100%;
+  }
+  h1 {
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    letter-spacing: -0.01em;
+  }
+  .gloss {
+    margin-top: 0.7rem;
+    font-size: 1.2rem;
+    color: var(--bark);
+  }
+  .gloss .dev {
+    font-family: var(--font-display);
+    color: var(--saffron-deep);
+    font-size: 1.35em;
+    line-height: 1;
+  }
+  .name-plate {
+    margin: 1.1rem 0 0;
+    width: 11.5rem;
+    background: var(--petal);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.5rem 0.5rem 0.35rem;
+    box-shadow: 0 14px 28px -16px rgb(34 59 43 / 0.35);
+    transform: rotate(-2.5deg);
+  }
+  .name-plate img {
+    border-radius: 3px;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+  }
+  .name-plate figcaption {
+    font-size: 0.78rem;
+    color: var(--bark);
+    text-align: center;
+    padding-top: 0.35rem;
+  }
+  .roles {
+    margin-top: 1.4rem;
+    font-weight: 600;
+    font-size: 1.05rem;
+    color: var(--ink);
+    letter-spacing: 0.01em;
+  }
+  .roles .dot {
+    color: var(--saffron);
+    margin-inline: 0.35rem;
+  }
+  .intro {
+    margin-top: 1rem;
+    font-size: 1.14rem;
+    max-width: 46ch;
+  }
+  .actions {
+    margin-top: 1.8rem;
+    display: flex;
+    align-items: baseline;
+    gap: 1.8rem;
+    flex-wrap: wrap;
+  }
+  .primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-weight: 700;
+    font-size: 1.15rem;
+    color: var(--saffron-deep);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--saffron);
+    padding-bottom: 0.15rem;
+  }
+  .primary:hover {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+  .secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.95rem;
+    color: var(--bark);
+    text-decoration: none;
+  }
+  .secondary:hover {
+    color: var(--saffron-deep);
+  }
+
+  /* the scattered cluster — snaps tossed on the dawn floor */
+  .collage {
+    position: relative;
+    width: min(100%, 39rem);
+    aspect-ratio: 35 / 33;
+    justify-self: end;
+  }
+  .snap {
+    position: absolute;
+    margin: 0;
+    background: var(--petal);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 0.55rem 0.55rem 0;
+    box-shadow: 0 16px 32px -18px rgb(34 59 43 / 0.38);
+    cursor: pointer;
+    outline: none;
+    will-change: transform;
+    transition:
+      transform 0.35s var(--ease-out),
+      box-shadow 0.35s var(--ease-out),
+      border-color 0.35s var(--ease-out);
+  }
+  .snap img {
+    border-radius: 3px;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    pointer-events: none;
+    user-select: none;
+  }
+  .snap figcaption {
+    font-size: 0.84rem;
+    color: var(--bark);
+    text-align: center;
+    padding: 0.38rem 0 0.48rem;
+    user-select: none;
+  }
+
+  /* resting spatial layout — de-occluded organic constellation */
+  .s1 {
+    top: 0;
+    right: 1%;
+    width: 56%;
+    z-index: 1;
+    transform: rotate(3.5deg);
+  }
+  .s2 {
+    top: 5%;
+    left: 0;
+    width: 56%;
+    z-index: 2;
+    transform: rotate(-2.8deg);
+  }
+  .s4 {
+    bottom: 1%;
+    left: 2%;
+    width: 54%;
+    z-index: 3;
+    transform: rotate(-3.5deg);
+  }
+  .s3 {
+    bottom: 2%;
+    right: 2%;
+    width: 47%;
+    z-index: 4;
+    transform: rotate(2deg);
+  }
+
+  /* De-stacking entrance animation */
+  :global(.js) .collage .snap[data-settle] {
+    opacity: 0;
+    transform: translate3d(var(--stack-x, 0), var(--stack-y, 0), 0) rotate(var(--stack-rot, 0deg)) scale(0.93);
+    filter: blur(4px);
+  }
+  :global(.js) .collage .snap[data-settle].settled {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) rotate(var(--settle-rot, 0deg)) scale(1);
+    filter: blur(0);
+    transition:
+      opacity 0.85s var(--ease-out) var(--d, 0s),
+      transform 1.05s var(--ease-out) var(--d, 0s),
+      filter 0.85s var(--ease-out) var(--d, 0s),
+      box-shadow 0.35s var(--ease-out) 0s,
+      border-color 0.35s var(--ease-out) 0s;
+  }
+
+  /* Hover & focus interactions: bring to front & straighten */
+  .collage .snap:hover,
+  .collage .snap:focus-visible {
+    z-index: 10 !important;
+    transform: translate3d(0, -8px, 0) rotate(0deg) scale(1.04) !important;
+    box-shadow: 0 28px 48px -16px rgb(34 59 43 / 0.46), 0 0 0 1px var(--saffron);
+    border-color: var(--saffron);
+    transition:
+      transform 0.3s var(--ease-out) 0s,
+      box-shadow 0.3s var(--ease-out) 0s,
+      border-color 0.3s var(--ease-out) 0s !important;
+  }
+
+  /* blossoms resting on the photo cluster */
+  .b {
+    position: absolute;
+    z-index: 0;
+  }
+  .c1 { top: -3%; right: 42%; z-index: 5; }
+  .c2 { bottom: 4%; left: 45%; z-index: 5; }
+
+  @media (max-width: 900px) {
+    .hero {
+      min-height: auto;
+    }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      padding-top: 1.5rem;
+    }
+    .collage {
+      justify-self: center;
+      width: min(100%, 33rem);
+      margin-top: 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .collage {
+      width: 100%;
+      aspect-ratio: 34 / 32;
+    }
+    .s1 {
+      width: 57%;
+      transform: rotate(2deg);
+    }
+    .s2 {
+      width: 57%;
+      transform: rotate(-1.5deg);
+    }
+    .s4 {
+      width: 56%;
+      transform: rotate(-2deg);
+    }
+    .s3 {
+      width: 48%;
+      transform: rotate(1.5deg);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    :global(.js) .collage .snap[data-settle] {
+      opacity: 1 !important;
+      transform: rotate(var(--settle-rot, 0deg)) !important;
+      filter: none !important;
+      transition: none !important;
+    }
+    .collage .snap:hover,
+    .collage .snap:focus-visible {
+      transform: rotate(var(--settle-rot, 0deg)) !important;
+      box-shadow: 0 16px 32px -18px rgb(34 59 43 / 0.38) !important;
+      border-color: var(--saffron) !important;
+      transition: none !important;
+    }
+  }
+</style>

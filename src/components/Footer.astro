@@ -1,0 +1,152 @@
+---
+import Parijat from './Parijat.astro';
+---
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span class="b b10"><Parijat variant="bloom" size={210} rotate={24} /></span>
+    <span class="b b11"><Parijat variant="bud" size={100} rotate={-40} /></span>
+
+    <div class="top">
+      <a class="brand" href="#top" aria-label="Back to top">
+        <Parijat variant="bloom" size={28} rotate={-10} />
+        <span class="brand-name">Prajakta Patil</span>
+      </a>
+      <nav class="social" aria-label="Social links">
+        <a
+          href="https://www.instagram.com/_.praju._._/"
+          target="_blank"
+          rel="noopener"
+          aria-label="Instagram — @_.praju._._"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.6" />
+            <circle cx="14.6" cy="5.4" r="1.15" fill="currentColor" />
+          </svg>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/prajakta-patil-1b3368296/"
+          target="_blank"
+          rel="noopener"
+          aria-label="LinkedIn — Prajakta Patil"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <rect x="1.5" y="1.5" width="17" height="17" rx="4" stroke="currentColor" stroke-width="1.6" />
+            <path d="M5.4 8.4v6.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" />
+            <circle cx="5.4" cy="5.7" r="1" fill="currentColor" />
+            <path
+              d="M9 14.6V8.4m0 2.6c0-1.5 1.1-2.7 2.7-2.7 1.5 0 2.5 1 2.5 2.7v3.6"
+              stroke="currentColor"
+              stroke-width="1.7"
+              stroke-linecap="round"
+            />
+          </svg>
+        </a>
+        <a
+          href="https://yatrawithprajakta.blogspot.com"
+          target="_blank"
+          rel="noopener"
+          aria-label="Blog — YatraWithPrajakta on Blogspot"
+        >
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+            <path
+              d="M4 2.8h8.2a3 3 0 0 1 0 6H4zM4 8.8h9.4a3.2 3.2 0 1 1 0 6.4H4z"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linejoin="round"
+            />
+            <path d="M4 2.8v12.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+          </svg>
+        </a>
+      </nav>
+    </div>
+
+    <p class="motto">Be kind. Be you.</p>
+
+    <div class="base">
+      <p>© 2026 Prajakta Patil</p>
+      <p class="quiet">Athlete · Trekker · Poet · Traveller · Tour guide · Writer · Founder</p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer {
+    background: var(--leaf-deep);
+    color: #e9e2cf;
+    position: relative;
+    overflow: hidden;
+  }
+  .footer-inner {
+    position: relative;
+    max-width: 76rem;
+    margin-inline: auto;
+    padding: clamp(2.6rem, 7vh, 4.5rem) var(--gutter) 2rem;
+  }
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    color: var(--petal);
+  }
+  .brand-name {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    line-height: 1;
+    padding-top: 0.15rem;
+  }
+  .social {
+    display: flex;
+    gap: 1.3rem;
+  }
+  .social a {
+    display: inline-flex;
+    color: #e9e2cf;
+  }
+  .social a:hover {
+    color: var(--saffron);
+  }
+  .motto {
+    margin-top: 2.2rem;
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 3.5vw, 2.3rem);
+    color: var(--petal);
+    max-width: none;
+  }
+  .base {
+    margin-top: 2.4rem;
+    padding-top: 1.2rem;
+    border-top: 1px solid rgb(250 244 230 / 0.16);
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    font-size: 0.9rem;
+  }
+  .base .quiet {
+    color: #b9b096;
+    text-align: right;
+  }
+  .b {
+    position: absolute;
+    opacity: 0.14;
+    pointer-events: none;
+  }
+  .b10 { right: -2rem; top: -2.4rem; }
+  .b11 { left: 34%; bottom: -1.4rem; }
+
+  @media (max-width: 640px) {
+    .base .quiet {
+      text-align: left;
+    }
+  }
+</style>

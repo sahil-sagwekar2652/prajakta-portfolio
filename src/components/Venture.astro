@@ -1,0 +1,93 @@
+---
+import Parijat from './Parijat.astro';
+import Arrow from './Arrow.astro';
+---
+
+<section class="venture" id="muhurta">
+  <div class="venture-inner" data-reveal>
+    <span class="b b9"><Parijat variant="fallen" size={80} rotate={150} dur="15s" drift /></span>
+    <img
+      class="mark"
+      src="/images/muhurta-yatra.jpg"
+      alt="Muhurta Yatra logo — 'my' monogram, journey at the auspicious time"
+      width="1024"
+      height="559"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="venture-copy">
+      <h2>Muhurta Yatra</h2>
+      <p class="tagline">Journey at the auspicious time</p>
+      <p class="venture-text">
+        My venture — tours and treks that set out at the right moment. This is where the
+        guide in me goes to work; the rest of this site stays personal.
+      </p>
+      <a class="read" href="https://www.instagram.com/muhurtayatra/" target="_blank" rel="noopener">
+        <span>@muhurtayatra on Instagram</span> <Arrow size={14} />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .venture {
+    padding: 0 var(--gutter) clamp(3.5rem, 9vh, 6rem);
+    max-width: 76rem;
+    margin-inline: auto;
+  }
+  .venture-inner {
+    position: relative;
+    display: grid;
+    grid-template-columns: minmax(0, 15rem) 1fr;
+    align-items: center;
+    gap: clamp(1.6rem, 4vw, 3rem);
+    background: var(--ground-2);
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    padding: clamp(1.6rem, 4vw, 2.8rem);
+    overflow: hidden;
+  }
+  .mark {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+  h2 {
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+  }
+  .tagline {
+    margin-top: 0.25rem;
+    color: var(--saffron-deep);
+    font-weight: 600;
+    font-size: 1.05rem;
+  }
+  .venture-text {
+    margin-top: 0.8rem;
+    max-width: 52ch;
+  }
+  .read {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 1rem;
+    font-weight: 700;
+    color: var(--saffron-deep);
+    text-decoration: none;
+  }
+  .read:hover {
+    color: var(--ink);
+  }
+  .b {
+    position: absolute;
+  }
+  .b9 { bottom: -0.4rem; right: 2.2rem; }
+
+  @media (max-width: 700px) {
+    .venture-inner {
+      grid-template-columns: 1fr;
+    }
+    .mark {
+      max-width: 13rem;
+    }
+  }
+</style>

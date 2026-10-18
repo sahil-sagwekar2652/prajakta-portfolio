@@ -1,0 +1,26 @@
+---
+/** One authored arrow, reused everywhere a link points onward. */
+interface Props {
+  direction?: 'ne' | 'e' | 'down';
+  size?: number;
+}
+const { direction = 'ne', size = 14 } = Astro.props;
+const rotation = direction === 'ne' ? 0 : direction === 'e' ? 45 : 135;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 16 16"
+  fill="none"
+  aria-hidden="true"
+  style={`transform: rotate(${rotation}deg); flex: none;`}
+>
+  <path
+    d="M2.5 13.5 13 3M5.5 2.5H13.5v8"
+    stroke="currentColor"
+    stroke-width="1.7"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>

@@ -1,0 +1,96 @@
+---
+/**
+ * The parijat blossom (Nyctanthes arbor-tristis), drawn as crisp vector
+ * geometry: seven slender pinwheel petals, cream at the base and white at
+ * the tips, around a saffron heart. The "fallen" variant trails the long
+ * orange corolla tube the flower is known for, as it lies at dawn.
+ */
+interface Props {
+  variant?: 'bloom' | 'fallen' | 'bud';
+  size?: number;
+  rotate?: number;
+  class?: string;
+  drift?: boolean;
+  dur?: string;
+}
+
+const {
+  variant = 'bloom',
+  size = 48,
+  rotate = 0,
+  class: className = '',
+  drift = false,
+  dur = '12s',
+} = Astro.props;
+
+const petals = Array.from({ length: 7 }, (_, i) => Math.round((i * 360) / 7));
+---
+
+{
+  variant === 'bud' ? (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      fill="none"
+      aria-hidden="true"
+      class:list={['pj', className, { 'pj-drift': drift }]}
+      style={`--rot:${rotate}deg; --dur:${dur};`}
+    >
+      <g transform={`rotate(${rotate} 50 50)`}>
+        <path
+          d="M50 18C57.5 27 60.5 32.5 60.5 39.5a10.5 10.5 0 1 1-21 0C39.5 32.5 42.5 27 50 18Z"
+          fill="#E07B2A"
+        />
+        <path d="M50 22c4 5 6.5 9 6.5 14" stroke="#F0A05C" stroke-width="2" stroke-linecap="round" />
+        <path
+          d="M43 46c2 4 4 7 7 8M57 46c-2 4-4 7-7 8"
+          stroke="#5C7A4A"
+          stroke-width="2.6"
+          stroke-linecap="round"
+        />
+        <path d="M50 54c0 6-1 10-2.5 15" stroke="#5C7A4A" stroke-width="2.6" stroke-linecap="round" />
+      </g>
+    </svg>
+  ) : (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 100"
+      fill="none"
+      aria-hidden="true"
+      class:list={['pj', className, { 'pj-drift': drift }]}
+      style={`--rot:${rotate}deg; --dur:${dur};`}
+    >
+      <g transform={`rotate(${rotate} 50 50)`}>
+        <circle cx="50" cy="50" r="5.6" fill="#5C7A4A" />
+        {petals.map((a) => (
+          <g transform={`rotate(${a} 50 50)`}>
+            <path
+              d="M50 54C41 42 36 24 49 5c8 17 7 35 1 49Z"
+              fill="#EFE3C6"
+              stroke="#DECFA8"
+              stroke-width="0.9"
+            />
+            <path d="M50 46C44 36 41 24 49 9c5 15 5 28 1 37Z" fill="#FFFDF6" />
+            <path
+              d="M50 47c-0.5-12-0.7-24-0.4-36"
+              stroke="#DFD0AC"
+              stroke-width="0.8"
+              stroke-linecap="round"
+            />
+          </g>
+        ))}
+        {variant === 'fallen' && (
+          <path
+            d="M51 53c13 5 22 17 20 33"
+            stroke="#E07B2A"
+            stroke-width="3.2"
+            stroke-linecap="round"
+          />
+        )}
+        <circle cx="50" cy="50" r="3.5" fill="#E07B2A" />
+      </g>
+    </svg>
+  )
+}
