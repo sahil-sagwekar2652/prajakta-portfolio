@@ -73,8 +73,11 @@ import Arrow from './Arrow.astro';
     font-weight: 700;
     color: var(--saffron-deep);
     text-decoration: none;
+    min-height: 44px;
+    padding: 0.35rem 0;
   }
-  .read:hover {
+  .read:hover,
+  .read:active {
     color: var(--ink);
   }
   .b {
@@ -85,9 +88,11 @@ import Arrow from './Arrow.astro';
   @media (max-width: 700px) {
     .venture-inner {
       grid-template-columns: 1fr;
+      padding: 1.5rem 1.25rem;
+      gap: 1.25rem;
     }
     .mark {
-      max-width: 13rem;
+      max-width: 12rem;
     }
   }
 </style>

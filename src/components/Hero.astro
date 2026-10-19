@@ -224,8 +224,8 @@ import Arrow from './Arrow.astro';
   .actions {
     margin-top: 1.8rem;
     display: flex;
-    align-items: baseline;
-    gap: 1.8rem;
+    align-items: center;
+    gap: 1.4rem;
     flex-wrap: wrap;
   }
   .primary {
@@ -233,11 +233,12 @@ import Arrow from './Arrow.astro';
     align-items: center;
     gap: 0.45rem;
     font-weight: 700;
-    font-size: 1.15rem;
+    font-size: 1.12rem;
     color: var(--saffron-deep);
     text-decoration: none;
     border-bottom: 1.5px solid var(--saffron);
-    padding-bottom: 0.15rem;
+    padding: 0.35rem 0;
+    min-height: 44px;
   }
   .primary:hover {
     color: var(--ink);
@@ -250,6 +251,9 @@ import Arrow from './Arrow.astro';
     font-size: 0.95rem;
     color: var(--bark);
     text-decoration: none;
+    padding: 0.35rem 0;
+    min-height: 44px;
+    word-break: break-word;
   }
   .secondary:hover {
     color: var(--saffron-deep);
@@ -379,9 +383,23 @@ import Arrow from './Arrow.astro';
   }
 
   @media (max-width: 640px) {
+    .hero {
+      padding-top: 0.5rem;
+    }
+    .hero-inner {
+      padding: 0.8rem var(--gutter) 2.5rem;
+      gap: 1.8rem;
+    }
+    .actions {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
     .collage {
       width: 100%;
+      max-width: 25rem;
       aspect-ratio: 34 / 32;
+      margin-top: 1.2rem;
     }
     .s1 {
       width: 57%;
@@ -398,6 +416,14 @@ import Arrow from './Arrow.astro';
     .s3 {
       width: 48%;
       transform: rotate(1.5deg);
+    }
+  }
+
+  @media (hover: none) {
+    .collage .snap:active {
+      z-index: 10 !important;
+      transform: translate3d(0, -4px, 0) scale(1.02) !important;
+      border-color: var(--saffron);
     }
   }
 

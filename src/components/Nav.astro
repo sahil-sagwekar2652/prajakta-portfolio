@@ -2,38 +2,136 @@
 import Parijat from './Parijat.astro';
 ---
 
-<header class="nav">
-  <a class="brand" href="#top" aria-label="Prajakta Patil — back to top">
-    <Parijat variant="bloom" size={30} rotate={12} />
-    <span class="brand-name">Prajakta Patil</span>
-  </a>
-  <nav class="links" aria-label="Sections">
-    <a href="#stories">Stories</a>
-    <a href="#moments">Moments</a>
-    <a href="#muhurta">Muhurta Yatra</a>
-    <a
-      class="ig"
-      href="https://www.instagram.com/_.praju._._/"
-      target="_blank"
-      rel="noopener"
-      aria-label="Prajakta on Instagram"
-    >
-      <svg width="19" height="19" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-        <rect x="1.5" y="1.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.6" />
-        <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.6" />
-        <circle cx="14.6" cy="5.4" r="1.15" fill="currentColor" />
-      </svg>
+<header class="nav-wrapper">
+  <div class="nav">
+    <a class="brand" href="#top" aria-label="Prajakta Patil — back to top">
+      <Parijat variant="bloom" size={30} rotate={12} />
+      <span class="brand-name">Prajakta Patil</span>
     </a>
-  </nav>
+
+    <!-- Desktop navigation -->
+    <nav class="links desktop-only" aria-label="Sections">
+      <a href="#stories">Stories</a>
+      <a href="#moments">Moments</a>
+      <a href="#muhurta">Muhurta Yatra</a>
+      <a
+        class="ig"
+        href="https://www.instagram.com/_.praju._._/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Prajakta on Instagram"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.6" />
+          <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.6" />
+          <circle cx="14.6" cy="5.4" r="1.15" fill="currentColor" />
+        </svg>
+      </a>
+    </nav>
+
+    <!-- Mobile controls -->
+    <div class="mobile-actions mobile-only">
+      <a
+        class="ig-mobile"
+        href="https://www.instagram.com/_.praju._._/"
+        target="_blank"
+        rel="noopener"
+        aria-label="Prajakta on Instagram"
+      >
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+          <rect x="1.5" y="1.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.6" />
+          <circle cx="10" cy="10" r="4" stroke="currentColor" stroke-width="1.6" />
+          <circle cx="14.6" cy="5.4" r="1.15" fill="currentColor" />
+        </svg>
+      </a>
+
+      <button
+        class="menu-btn"
+        id="menu-toggle-btn"
+        aria-label="Toggle navigation menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav-drawer"
+        type="button"
+      >
+        <span class="line line-1"></span>
+        <span class="line line-2"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Drawer -->
+  <div class="mobile-drawer mobile-only" id="mobile-nav-drawer" aria-hidden="true">
+    <nav class="drawer-nav" aria-label="Mobile sections">
+      <a href="#stories" class="drawer-item">
+        <span class="item-title">Stories</span>
+        <span class="item-desc">Sahyadri climbs, guides & reflections</span>
+      </a>
+      <a href="#moments" class="drawer-item">
+        <span class="item-title">Moments</span>
+        <span class="item-desc">Camera roll between treks</span>
+      </a>
+      <a href="#muhurta" class="drawer-item">
+        <span class="item-title">Muhurta Yatra</span>
+        <span class="item-desc">Tours & treks at the auspicious time</span>
+      </a>
+      <a
+        href="https://yatrawithprajakta.blogspot.com"
+        target="_blank"
+        rel="noopener"
+        class="drawer-item external"
+      >
+        <span class="item-title">YatraWithPrajakta Blog ↗</span>
+        <span class="item-desc">Read full original blog entries</span>
+      </a>
+    </nav>
+  </div>
 </header>
 
+<script>
+  const toggleBtn = document.getElementById('menu-toggle-btn');
+  const drawer = document.getElementById('mobile-nav-drawer');
+  const drawerLinks = drawer?.querySelectorAll('a');
+
+  function setMenuOpen(open: boolean) {
+    if (!toggleBtn || !drawer) return;
+    toggleBtn.setAttribute('aria-expanded', String(open));
+    toggleBtn.classList.toggle('is-active', open);
+    drawer.setAttribute('aria-hidden', String(!open));
+    drawer.classList.toggle('is-open', open);
+  }
+
+  toggleBtn?.addEventListener('click', () => {
+    const isOpen = toggleBtn.getAttribute('aria-expanded') === 'true';
+    setMenuOpen(!isOpen);
+  });
+
+  // Close when clicking any link
+  drawerLinks?.forEach((link) => {
+    link.addEventListener('click', () => {
+      setMenuOpen(false);
+    });
+  });
+
+  // Close on Escape key
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') setMenuOpen(false);
+  });
+</script>
+
 <style>
+  .nav-wrapper {
+    position: relative;
+    width: 100%;
+    background: var(--ground);
+    border-bottom: 1px solid var(--line);
+    z-index: 50;
+  }
   .nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 1rem;
-    padding: 1.1rem var(--gutter) 0.6rem;
+    padding: 0.8rem var(--gutter);
     max-width: 76rem;
     margin-inline: auto;
   }
@@ -43,6 +141,7 @@ import Parijat from './Parijat.astro';
     gap: 0.6rem;
     text-decoration: none;
     color: var(--ink);
+    min-height: 44px;
   }
   .brand-name {
     font-family: var(--font-display);
@@ -60,17 +159,133 @@ import Parijat from './Parijat.astro';
     font-size: 0.98rem;
     color: var(--ink-soft);
     text-decoration: none;
+    padding: 0.4rem 0.2rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
   }
   .links a:hover {
     color: var(--saffron-deep);
   }
   .links .ig {
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
     color: var(--saffron-deep);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    transition: background 0.2s var(--ease-out);
   }
-  @media (max-width: 640px) {
-    .links a:not(.ig) {
+  .links .ig:hover {
+    background: var(--ground-2);
+  }
+
+  .mobile-only {
+    display: none;
+  }
+
+  @media (max-width: 720px) {
+    .desktop-only {
       display: none;
+    }
+    .mobile-only {
+      display: block;
+    }
+    .mobile-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .ig-mobile {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      color: var(--saffron-deep);
+      border-radius: 50%;
+    }
+    .menu-btn {
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--petal);
+      color: var(--ink);
+      cursor: pointer;
+      padding: 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .menu-btn:hover,
+    .menu-btn:active {
+      border-color: var(--saffron);
+      background: var(--ground-2);
+    }
+    .menu-btn .line {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 2px;
+      transition: transform 0.25s var(--ease-out), opacity 0.25s;
+    }
+    .menu-btn.is-active .line-1 {
+      transform: translateY(3.5px) rotate(45deg);
+    }
+    .menu-btn.is-active .line-2 {
+      transform: translateY(-3.5px) rotate(-45deg);
+    }
+
+    .mobile-drawer {
+      overflow: hidden;
+      max-height: 0;
+      background: var(--petal);
+      border-top: 1px solid var(--line);
+      transition: max-height 0.35s var(--ease-out);
+    }
+    .mobile-drawer.is-open {
+      max-height: 380px;
+      box-shadow: 0 16px 28px -12px rgb(34 59 43 / 0.15);
+    }
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
+      padding: 0.8rem var(--gutter) 1.4rem;
+      gap: 0.4rem;
+    }
+    .drawer-item {
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ink);
+      min-height: 48px;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .drawer-item:hover,
+    .drawer-item:active {
+      background: var(--ground-2);
+    }
+    .item-title {
+      font-weight: 700;
+      font-size: 1.08rem;
+      color: var(--ink);
+    }
+    .item-desc {
+      font-size: 0.86rem;
+      color: var(--bark);
+      margin-top: 0.15rem;
+    }
+    .drawer-item.external .item-title {
+      color: var(--saffron-deep);
     }
   }
 </style>

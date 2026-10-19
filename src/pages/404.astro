@@ -70,19 +70,34 @@ import Arrow from '../components/Arrow.astro';
   .primary {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     font-weight: 700;
     font-size: 1.1rem;
     color: var(--petal);
     background: var(--saffron-deep);
-    padding: 0.75rem 1.6rem;
+    padding: 0.75rem 1.8rem;
+    min-height: 48px;
     border-radius: 9999px;
     text-decoration: none;
     transition: background 0.2s var(--ease-out), transform 0.2s var(--ease-out);
     box-shadow: 0 10px 24px -10px rgb(168 81 14 / 0.5);
   }
-  .primary:hover {
+  .primary:hover,
+  .primary:active {
     background: var(--ink);
     transform: translateY(-2px);
+  }
+
+  @media (max-width: 480px) {
+    .not-found {
+      padding: clamp(2rem, 6vh, 4rem) var(--gutter);
+    }
+    .actions {
+      width: 100%;
+    }
+    .primary {
+      width: 100%;
+    }
   }
 </style>

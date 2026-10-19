@@ -148,8 +148,11 @@ const rest = posts.filter((p) => !p.featured);
     color: var(--saffron-deep);
     text-decoration: none;
     width: fit-content;
+    min-height: 44px;
+    padding: 0.3rem 0;
   }
-  .read:hover {
+  .read:hover,
+  .read:active {
     color: var(--ink);
   }
 
@@ -207,6 +210,20 @@ const rest = posts.filter((p) => !p.featured);
   .b7 { bottom: 12%; left: -1rem; }
 
   @media (max-width: 640px) {
+    .stories {
+      padding: clamp(2.2rem, 6vh, 4rem) var(--gutter);
+    }
+    .featured-body {
+      padding: 1.25rem 1.15rem;
+      gap: 0.65rem;
+    }
+    .card-body {
+      padding: 1.15rem 1.1rem;
+      gap: 0.5rem;
+    }
+    .card-grid {
+      gap: 1.4rem;
+    }
     .b6,
     .b7 {
       display: none;
